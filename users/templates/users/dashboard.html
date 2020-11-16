@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+Hello, {{ user.username|default:'Guest' }}!
+
+<div>
+    {% if user.is_authenticated %}
+
+        <div class="topnav">
+            <a class="active" href="{% url 'dashboard' %}">Home</a>
+            <a href="{% url 'bank_accounts' %}">Accounts</a>
+        </div>
+
+
+
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'password_change' %}">Change password</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+</body>
+</html>
